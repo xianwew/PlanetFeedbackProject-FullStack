@@ -1,4 +1,40 @@
 <% layout('layout/boilerplate') %>
+    <div class="row">
+            <div class="col-6 offset-3" style="width: 100%; transform: translateX(-25%);">
+                <div class="card mb-3" >
+                    <img src="<%= pin.image %>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= pin.title %></h5>
+                        <p class="card-text"><%= pin.description %></p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item text-muted"><%= pin.location %></li>
+                        <li class="list-group-item">$<%= pin.price %>/night</li>
+                    </ul>
+                    <div class="card-body">
+                        <a class="card-link btn btn-primary" href="/earthlyExplorer/<%= pin._id %>/edit">Edit</a>
+                        <form class="d-inline" action="/earthlyExplorer/<%= pin._id %>?_method=Delete" method="POST">
+                            <button class="btn btn-danger" >Delete Pin</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-muted">
+                        2 days ago
+                    </div>
+                </div>
+            </div>
+    </div>
+
+<!-- <footer>
+    <a href="/earthlyExplorer/<%= pin._id %>/edit">Edit</a>
+    <a href="/earthlyExplorer">All PlanetPins</a>
+    <form action="/earthlyExplorer/<%= pin._id %>?_method=Delete" method="POST">
+        <button>Delete Pin</button>
+    </form>
+</footer> -->
+
+
+
+    <!-- 
     <h1>
         <%= pin.title %>
     </h1>
@@ -6,11 +42,6 @@
         <%= pin.location %>
     </h2>
     <img src="<%= pin.image %>" alt="image">
-    <p><%= pin.description %></p>
-    <footer>
-        <a href="/earthlyExplorer/<%= pin._id %>/edit">Edit</a>
-        <a href="/earthlyExplorer">All PlanetPins</a>
-        <form action="/earthlyExplorer/<%= pin._id %>?_method=Delete" method="POST">
-            <button>Delete Pin</button>
-        </form>
-    </footer>
+    <p>
+        <%= pin.description %>
+    </p> -->
