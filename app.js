@@ -25,39 +25,39 @@ app.get('/', (req, res) => {
     res.send('It is working!');
 });
 
-app.get('/earthlyExplorer', async (req, res) => {
+app.get('/earthExplorer', async (req, res) => {
     const pins = await PlanetPins.find({});
     res.render('PlanetPins/index', {pins});
 });
 
-app.get('/earthlyExplorer/newPin', (req, res) => {
+app.get('/earthExplorer/newPin', (req, res) => {
     res.render('PlanetPins/newPin');
 });
 
-app.post('/earthlyExplorer', async (req, res) => {
-    const pin = new PlanetPins(req.body.earthlyExplorer);
+app.post('/earthExplorer', async (req, res) => {
+    const pin = new PlanetPins(req.body.earthExplorer);
     await pin.save();
-    res.redirect(`earthlyExplorer/${pin._id}`);
+    res.redirect(`earthExplorer/${pin._id}`);
 });
 
-app.get('/earthlyExplorer/:id', async (req, res) => {
+app.get('/earthExplorer/:id', async (req, res) => {
     const pin = await PlanetPins.findById(req.params.id);
     res.render('PlanetPins/details', {pin});
 });
 
-app.get('/earthlyExplorer/:id/edit', async (req, res) => {
+app.get('/earthExplorer/:id/edit', async (req, res) => {
     const pin = await PlanetPins.findById(req.params.id);
     res.render('PlanetPins/edit', {pin});
 });
 
-app.put('/earthlyExplorer/:id', async (req, res) => {
-    const updatedPin = await PlanetPins.findByIdAndUpdate(req.params.id, {...req.body.earthlyExplorer}, {runValidators: true});
-    res.redirect(`/earthlyExplorer/${updatedPin._id}`);
+app.put('/earthExplorer/:id', async (req, res) => {
+    const updatedPin = await PlanetPins.findByIdAndUpdate(req.params.id, {...req.body.earthExplorer}, {runValidators: true});
+    res.redirect(`/earthExplorer/${updatedPin._id}`);
 });
 
-app.delete('/earthlyExplorer/:id', async (req, res) => {
+app.delete('/earthExplorer/:id', async (req, res) => {
     const deletePin = await PlanetPins.findByIdAndDelete(req.params.id);
-    res.redirect('/earthlyExplorer');
+    res.redirect('/earthExplorer');
 });
 
 app.listen(3000, () => {

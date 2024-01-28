@@ -12,8 +12,8 @@
                         <li class="list-group-item">$<%= pin.price %>/night</li>
                     </ul>
                     <div class="card-body">
-                        <a class="card-link btn btn-primary" href="/earthlyExplorer/<%= pin._id %>/edit">Edit</a>
-                        <form class="d-inline" action="/earthlyExplorer/<%= pin._id %>?_method=Delete" method="POST">
+                        <a class="card-link btn btn-primary" href="/earthExplorer/<%= pin._id %>/edit">Edit</a>
+                        <form class="d-inline" action="/earthExplorer/<%= pin._id %>?_method=Delete" method="POST">
                             <button class="btn btn-danger" >Delete Pin</button>
                         </form>
                     </div>
@@ -25,9 +25,9 @@
     </div>
 
 <!-- <footer>
-    <a href="/earthlyExplorer/<%= pin._id %>/edit">Edit</a>
-    <a href="/earthlyExplorer">All PlanetPins</a>
-    <form action="/earthlyExplorer/<%= pin._id %>?_method=Delete" method="POST">
+    <a href="/earthExplorer/<%= pin._id %>/edit">Edit</a>
+    <a href="/earthExplorer">All PlanetPins</a>
+    <form action="/earthExplorer/<%= pin._id %>?_method=Delete" method="POST">
         <button>Delete Pin</button>
     </form>
 </footer> -->

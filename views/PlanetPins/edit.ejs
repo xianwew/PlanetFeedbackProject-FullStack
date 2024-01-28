@@ -2,20 +2,20 @@
 <div class="row">
     <h1 class="text-center">Edit The Planet Pin</h1>
     <div class="col-6 offset-3">
-        <form action="/earthlyExplorer/<%= pin._id %>?_method=PUT" method="POST">
+        <form action="/earthExplorer/<%= pin._id %>?_method=PUT" method="POST">
             <div class="mb-3">
                 <label class="form-label" for="title">title</label>
-                <input class="form-control" type="text" id="title" name="earthlyExplorer[title]"  value="<%= pin.title %>">
+                <input class="form-control" type="text" id="title" name="earthExplorer[title]"  value="<%= pin.title %>">
             </div>
     
             <div class="mb-3">
                 <label class="form-label" for="location">location</label>
-                <input class="form-control" type="text" id="location" name="earthlyExplorer[location]"  value="<%= pin.location %>">
+                <input class="form-control" type="text" id="location" name="earthExplorer[location]"  value="<%= pin.location %>">
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="image">Image Url</label>
-                <input class="form-control" type="text" id="image" name="earthlyExplorer[image]"  value="<%= pin.image %>">
+                <input class="form-control" type="text" id="image" name="earthExplorer[image]"  value="<%= pin.image %>">
             </div>
 
             <div class="mb-3">
@@ -23,20 +23,20 @@
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">$</span>
                     <input id="price" type="text" class="form-control" placeholder="0.00" aria-label="price"
-                        aria-describedby="basic-addon1" name="earthlyExplorer[price]"  value="<%= pin.price %>">
+                        aria-describedby="basic-addon1" name="earthExplorer[price]"  value="<%= pin.price %>">
                 </div>
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="description">Description</label>
-                <textarea class="form-control" type="text" id="description" name="earthlyExplorer[description]"><%= pin.description %></textarea>
+                <textarea class="form-control" type="text" id="description" name="earthExplorer[description]"><%= pin.description %></textarea>
             </div>
 
             <div class="mb-3">
                 <button class="btn btn-success">Update The Pin</button>
             </div>
         </form>
-        <a href="/earthlyExplorer/<%= pin._id %>">Back To PlanetPin</a>
+        <a href="/earthExplorer/<%= pin._id %>">Back To PlanetPin</a>
     </div>
 </div>
 
@@ -44,17 +44,17 @@
 
 <!-- <% layout('layout/boilerplate') %>
     <h1>Edit The PlanetPin</h1>
-    <form action="/earthlyExplorer/<%= pin._id %>?_method=PUT" method="POST">
+    <form action="/earthExplorer/<%= pin._id %>?_method=PUT" method="POST">
         <div>
             <label for="title">title</label>
-            <input type="text" id="title" name="earthlyExplorer[title]" value="<%= pin.title %>">
+            <input type="text" id="title" name="earthExplorer[title]" value="<%= pin.title %>">
         </div>
 
         <div>
             <label for="location">location</label>
-            <input type="text" id="location" name="earthlyExplorer[location]" value="<%= pin.location %>">
+            <input type="text" id="location" name="earthExplorer[location]" value="<%= pin.location %>">
         </div>
 
         <button>Update the PlanetPin</button>
     </form>
-    <a href="/earthlyExplorer/<%= pin._id %>">Back To PlanetPin</a> -->
+    <a href="/earthExplorer/<%= pin._id %>">Back To PlanetPin</a> -->
