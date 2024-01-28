@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlanetPins</title>
-</head>
-<body>
-    <h1>All PlanetPins</h1>
-    <div>
-        <a href="/earthlyExplorer/newPin">Add PlanetPin</a>
-    </div>
-    <ul>
-        <% for(let pin of pins){ %>
-            <li><a href="/earthlyExplorer/<%= pin._id %>"><%= pin.title %></a></li>
-        <% }%>
-    </ul>
-</body>
-</html>
+<% layout('layout/boilerplate') %>
+
+    <body>
+        <h1>All PlanetPins</h1>
+        <div>
+            <a href="/earthlyExplorer/newPin">Add PlanetPin</a>
+        </div>
+        <ul>
+            <% for(let pin of pins){ %>
+                <li><a href="/earthlyExplorer/<%= pin._id %>">
+                        <%= pin.title %>
+                    </a></li>
+                <% }%>
+        </ul>
+    </body>
