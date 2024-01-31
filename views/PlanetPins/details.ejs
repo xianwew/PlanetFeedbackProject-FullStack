@@ -45,7 +45,7 @@
                         <h5 class="card-title">Rating: <%= r.rating %></h5>
                         <p>Review: <%= r.body %></p>
                         <form action="/earthExplorer/<%= pin._id %>/reviews/<%= r._id %>?_method=DELETE" method="POST">
-                            <button class="btn-sm btn-danger">Delete</button>
+                            <button class="btn btn-danger">Delete</button>
                         </form>
                     </div>
                 </div>
