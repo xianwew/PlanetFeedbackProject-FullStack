@@ -2,20 +2,29 @@
 <div class="row">
     <h1 class="text-center">Edit The Planet Pin</h1>
     <div class="col-6 offset-3">
-        <form action="/earthExplorer/<%= pin._id %>?_method=PUT" method="POST">
+        <form action="/earthExplorer/<%= pin._id %>?_method=PUT" method="POST" novalidate class="validated-form">
             <div class="mb-3">
                 <label class="form-label" for="title">title</label>
-                <input class="form-control" type="text" id="title" name="earthExplorer[title]"  value="<%= pin.title %>">
+                <input class="form-control" type="text" id="title" name="earthExplorer[title]"  value="<%= pin.title %>" required>
+                <div class="valid-feedback">
+                    looks good!
+                </div>
             </div>
     
             <div class="mb-3">
                 <label class="form-label" for="location">location</label>
-                <input class="form-control" type="text" id="location" name="earthExplorer[location]"  value="<%= pin.location %>">
+                <input class="form-control" type="text" id="location" name="earthExplorer[location]"  value="<%= pin.location %>" required>
+                <div class="valid-feedback">
+                    looks good!
+                </div>
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="image">Image Url</label>
-                <input class="form-control" type="text" id="image" name="earthExplorer[image]"  value="<%= pin.image %>">
+                <input class="form-control" type="text" id="image" name="earthExplorer[image]"  value="<%= pin.image %>" required>
+                <div class="valid-feedback">
+                    looks good!
+                </div>
             </div>
 
             <div class="mb-3">
@@ -23,13 +32,19 @@
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">$</span>
                     <input id="price" type="text" class="form-control" placeholder="0.00" aria-label="price"
-                        aria-describedby="basic-addon1" name="earthExplorer[price]"  value="<%= pin.price %>">
+                        aria-describedby="basic-addon1" name="earthExplorer[price]"  value="<%= pin.price %>" required>
+                </div>
+                <div class="valid-feedback">
+                    looks good!
                 </div>
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="description">Description</label>
-                <textarea class="form-control" type="text" id="description" name="earthExplorer[description]"><%= pin.description %></textarea>
+                <textarea class="form-control" type="text" id="description" name="earthExplorer[description]"><%= pin.description %> required</textarea>
+                <div class="valid-feedback">
+                    looks good!
+                </div>
             </div>
 
             <div class="mb-3">
