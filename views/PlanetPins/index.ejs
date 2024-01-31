@@ -1,21 +1,23 @@
 <% layout('layout/boilerplate') %>
-    <h1>All Planet Pins</h1>
-        <% for(let pin of pins){ %>
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img class="img-fluid" src="<%= pin.image %>" alt="image">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title"><%= pin.title %></h5>
-                            <p class="card-text"><%= pin.description %></p>
-                            <p class="card-text"><small class="text-muted"><%= pin.location %></small></p>
-                            <a class="btn btn-primary" style="width: 45%; min-width: min-content;" href="earthExplorer/<%= pin._id %>">View <%= pin.title %></a>
+    <div style="width: 60%; margin: auto;">
+        <h1>All Planet Pins</h1>
+            <% for(let pin of pins){ %>
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-fluid" src="<%= pin.image %>" alt="image">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= pin.title %></h5>
+                                <p class="card-text"><%= pin.description %></p>
+                                <p class="card-text"><small class="text-muted"><%= pin.location %></small></p>
+                                <a class="btn btn-primary" style="width: 45%; min-width: min-content;" href="earthExplorer/<%= pin._id %>">View <%= pin.title %></a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div style="margin-bottom: 10px;"></div>
-        <% }%>
-    <div style="margin-bottom: 20px;"></div>
+                <div style="margin-bottom: 10px;"></div>
+            <% }%>
+        <div style="margin-bottom: 20px;"></div>
+    </div>
