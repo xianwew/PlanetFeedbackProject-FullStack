@@ -27,14 +27,15 @@ const sample = (array) => {
 
 const seedDB = async () => {
     await planetPins.deleteMany({});
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 200; i++) {
         const randomNum = Math.floor(Math.random() * 1000);
         const randomPrice = Math.floor(Math.random() * 20) + 10;
         const place = sample(places);
+        const descriptor = sample(descriptors);
         const pin = new planetPins({
             location: `${cities[randomNum].city}, ${cities[randomNum].state}`,
-            title: `${sample(descriptors)} ${place}`,
-            image: `https://source.unsplash.com/random/1600x900/?${place}`,
+            title: `${descriptor} ${place}`,
+            image: `https://source.unsplash.com/random/1600x900/?${descriptor} ${place}`,
             description: des[Math.floor(Math.random() * (des.length - 1))],
             price: randomPrice,
         });
