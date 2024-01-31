@@ -2,7 +2,7 @@
     <div class="row" >
         <div class="col-6" >
             <div class="card mb-3">
-                <img src="<%= pin.image %>" class="card-img-top" alt="...">
+                <img src="<%= pin.image %>" class="card-img-top" alt="..." style="max-width: 100rem; max-height: 80rem;">
                 <div class="card-body">
                     <h5 class="card-title"><%= pin.title %></h5>
                     <p class="card-text"><%= pin.description %></p>
@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <a class="card-link btn btn-primary" href="/earthExplorer/<%= pin._id %>/edit">Edit</a>
                     <form class="d-inline" action="/earthExplorer/<%= pin._id %>?_method=Delete" method="POST">
-                        <button class="btn btn-danger" >Delete Pin</button>
+                        <button class="btn btn-danger" >Delete</button>
                     </form>
                 </div>
                 <div class="card-footer text-muted">

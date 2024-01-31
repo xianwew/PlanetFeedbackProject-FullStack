@@ -1,7 +1,7 @@
 <% layout('layout/boilerplate') %>
-<div class="row">
+<div class="row" style="width: 70vw;">
     <h1 class="text-center">Edit The Planet Pin</h1>
-    <div class="col-6 offset-3">
+    <div class="col-12">
         <form action="/earthExplorer/<%= pin._id %>?_method=PUT" method="POST" novalidate class="validated-form">
             <div class="mb-3">
                 <label class="form-label" for="title">title</label>
@@ -41,14 +41,14 @@
 
             <div class="mb-3">
                 <label class="form-label" for="description">Description</label>
-                <textarea class="form-control" type="text" id="description" name="earthExplorer[description]" required><%= pin.description %></textarea>
+                <textarea class="form-control" type="text" id="description" name="earthExplorer[description]" rows="20" required><%= pin.description %></textarea>
                 <div class="valid-feedback">
                     looks good!
                 </div>
             </div>
 
             <div class="mb-3">
-                <button class="btn btn-success">Update The Pin</button>
+                <button class="btn btn-success">Update The Planet Pin</button>
             </div>
         </form>
         <a href="/earthExplorer/<%= pin._id %>">Back To PlanetPin</a>
