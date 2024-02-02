@@ -1,4 +1,5 @@
 <% layout('layout/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/stars.css">
     <div class="row" >
         <div class="<%= currentUser? 'col-6': 'col-12'%>" >
             <div class="card mb-3">
@@ -27,15 +28,32 @@
         </div>
         <% if(currentUser){ %>
             <div class="col-6" >
-                <h2 style="font-weight: 700;">Leave a Review</h2>
+                <h2 style="font-weight: 700;" class="mb-4">Leave a Review</h2>
                 <form action="/earthExplorer/<%= pin._id %>/reviews" method="POST" class="mb-3 validated-form" novalidate>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="rating" class="form-label">Rating</label>
                         <input type="range" class="form-range" name="review[rating]" id="rating" min=1 max=5>
-                    </div>
+                    </div> -->
 
-                    <div class="mb-3">
-                        <label class="form-label" for="body">Review</label>
+                    <div class="d-flex" style="align-items: center; height: 30px; margin-right: 20px;">
+                        <p style="font-weight: 700; font-size: medium;">Review Text</p>
+                        <div style="margin-left: auto;">
+                            <fieldset class="starability-grow" >
+                                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                                <label for="first-rate1" title="Terrible">1 star</label>
+                                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                                <label for="first-rate2" title="Not good">2 stars</label>
+                                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                                <label for="first-rate3" title="Average">3 stars</label>
+                                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                                <label for="first-rate4" title="Very good">4 stars</label>
+                                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                                <label for="first-rate5" title="Amazing">5 stars</label>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="mb-3" style="margin-top: 0;">
                         <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
                         <div class="valid-feedback">
                             Looks good!
@@ -46,8 +64,12 @@
                 <% for (let r of pin.reviews){ %>
                     <div class="card mb-3">
                         <div class="mb-3 card-body">
-                            <h5 class="card-title">Rating: <%= r.rating %></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">By <%= r.author.username %></h6>
+                            <div class="d-flex">
+                                <h5 class="card-title" style="font-weight: 600;"><%= r.author.username %></h5>
+                                <p class="starability-result" data-rating="<%= r.rating %>" style="margin-left: auto;">
+                                Rated: <%= r.rating %> stars
+                                </p>
+                            </div>
                             <p>Review: <%= r.body %></p>
                             <% if(currentUser && r.author.equals(currentUser._id)){ %>
                                 <form action="/earthExplorer/<%= pin._id %>/reviews/<%= r._id %>?_method=DELETE" method="POST">
