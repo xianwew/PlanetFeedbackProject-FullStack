@@ -3,6 +3,8 @@ const router = express.Router({mergeParams: true});
 const catchAsync = require('../utils/catchAsync');
 const {isLoggedIn, validatePin, isAuthor} = require('../middleware');
 const earthExplorers = require('../controllers/earthExplorer');
+const multer = require('multer');
+const upload = multer({des: 'uploads/'});
 
 router.route('/')
     .get(catchAsync(earthExplorers.index))
