@@ -4,18 +4,17 @@ const catchAsync = require('../utils/catchAsync');
 const {isLoggedIn, validatePin, isAuthor} = require('../middleware');
 const earthExplorers = require('../controllers/earthExplorer');
 
-router.get('/', catchAsync(earthExplorers.index));
+router.route('/')
+    .get(catchAsync(earthExplorers.index))
+    .post(isLoggedIn, validatePin, catchAsync(earthExplorers.createNewPin));
 
 router.get('/newPin', isLoggedIn, earthExplorers.new);
 
-router.post('/', isLoggedIn, validatePin, catchAsync(earthExplorers.createNewPin));
-
-router.get('/:id', catchAsync(earthExplorers.viewPin));
+router.route('/:id')
+    .get(catchAsync(earthExplorers.viewPin))
+    .put(isLoggedIn, validatePin, isAuthor, catchAsync(earthExplorers.postEdit))
+    .delete(isLoggedIn, isAuthor, catchAsync(earthExplorers.deletePin));
 
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(earthExplorers.editPin));
-
-router.put('/:id', isLoggedIn, validatePin, isAuthor, catchAsync(earthExplorers.postEdit));
-
-router.delete('/:id', isLoggedIn, isAuthor, catchAsync(earthExplorers.deletePin));
 
 module.exports = router;
