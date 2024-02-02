@@ -12,8 +12,6 @@ const flash = require('connect-flash');
 const LocalStrategy = require('passport-local');
 const passport = require('passport');
 const User = require('./models/user');
-const { storeReturnTo } = require('./middleware');
-
 
 mongoose.connect('mongodb://127.0.0.1:27017/planetFB')
     .then(() => { console.log('connection opened!'); })
@@ -52,10 +50,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// app.use(storeReturnTo);
-
 app.use((req, res, next) => {
-    //console.log(req.session);
     const messages = {
         success: req.flash('success'),
         error: req.flash('error'), 
@@ -69,12 +64,6 @@ app.use((req, res, next) => {
 
     next();
 });
-
-// app.get('/fakeUser', async (req, res) => {
-//     const user = new User({email: 'xianwew@gmail.com', username: 'xianwew'});
-//     const newUser = await User.register(user, 'chicken');
-//     res.send(newUser);
-// });
 
 app.use('/earthExplorer', earthExplorerRoutes);
 app.use('/earthExplorer/:id/reviews', reviewsRoutes);
