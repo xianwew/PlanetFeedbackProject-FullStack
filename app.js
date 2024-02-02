@@ -3,11 +3,17 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
-const earthExplorer = require('./routes/earthExplorer');
-const reviews = require('./routes/reviews');
+const earthExplorerRoutes = require('./routes/earthExplorer');
+const reviewsRoutes = require('./routes/reviews');
+const userRoutes = require('./routes/users');
 const ExpressError = require('./utils/ExpressError');
 const session = require('express-session');
 const flash = require('connect-flash');
+const LocalStrategy = require('passport-local');
+const passport = require('passport');
+const User = require('./models/user');
+const { storeReturnTo } = require('./middleware');
+
 
 mongoose.connect('mongodb://127.0.0.1:27017/planetFB')
     .then(() => { console.log('connection opened!'); })
@@ -39,11 +45,22 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// app.use(storeReturnTo);
+
 app.use((req, res, next) => {
+    //console.log(req.session);
     const messages = {
         success: req.flash('success'),
         error: req.flash('error'), 
         warming: req.flash('warming'), 
+        currentUser: req.user,
     };
 
     for (let key in messages) {
@@ -53,8 +70,15 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/earthExplorer', earthExplorer);
-app.use('/earthExplorer/:id/reviews', reviews);
+// app.get('/fakeUser', async (req, res) => {
+//     const user = new User({email: 'xianwew@gmail.com', username: 'xianwew'});
+//     const newUser = await User.register(user, 'chicken');
+//     res.send(newUser);
+// });
+
+app.use('/earthExplorer', earthExplorerRoutes);
+app.use('/earthExplorer/:id/reviews', reviewsRoutes);
+app.use('/', userRoutes);
 
 app.get('/', (req, res) => {
     res.send('It is working!');

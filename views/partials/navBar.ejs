@@ -1,15 +1,24 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">PlanetFeedBack</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link" href="/">Home</a>
-          <a class="nav-link" href="/earthExplorer">Planet Pins</a>
-          <a class="nav-link" href="/earthExplorer/newPin">New Planet Pin</a>
-        </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: fixed; width: 100vw; z-index: 99;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">PlanetFeedBack</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/earthExplorer">Planet Pins</a>
+        <a class="nav-link" href="/earthExplorer/newPin">New Planet Pin</a>
+      </div>
+      <div class="navbar-nav " style="margin-left: auto; margin-right: 1vw;">
+        <% if(!currentUser){ %>
+          <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link" href="/register">Register</a>
+        <% } else {%>
+            <a class="nav-link" href="/Logout">Logout</a>
+        <% } %>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>

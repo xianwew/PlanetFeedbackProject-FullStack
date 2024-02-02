@@ -1,19 +1,19 @@
 <% if(success && success.length) {%>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="position: fixed; z-index: 99; opacity: 0.95; width: 30vw; margin-top: 2vh;">
         <%= success %>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 <% } %>
 
 <% if(warming && warming.length) {%>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" style="position: fixed; z-index: 99; opacity: 0.95; width: 30vw; margin-top: 2vh;">
         <%= warming %>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 <% } %>
 
 <% if(error && error.length) {%>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="position: fixed; z-index: 99; opacity: 0.95; width: 30vw; margin-top: 2vh;">
         <%= error %>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
