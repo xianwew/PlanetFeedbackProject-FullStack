@@ -2,7 +2,7 @@
 <div class="row" >
     <h1 class="text-center">Edit The Planet Pin</h1>
     <div class="col-12">
-        <form action="/earthExplorer/<%= pin._id %>?_method=PUT" method="POST" novalidate class="validated-form">
+        <form action="/earthExplorer/<%= pin._id %>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label" for="title">title</label>
                 <input class="form-control" type="text" id="title" name="earthExplorer[title]"  value="<%= pin.title %>" required>
@@ -19,12 +19,9 @@
                 </div>
             </div>
 
-            <div class="mb-3">
-                <label class="form-label" for="image">Image Url</label>
-                <input class="form-control" type="text" id="image" name="earthExplorer[image]"  value="<%= pin.image %>" required>
-                <div class="valid-feedback">
-                    looks good!
-                </div>
+            <div class="mb-3 custom-file">
+                <label class="form-label" for="image">Add Images</label>
+                <input class="form-control" type="file" name="image" id="image" multiple>
             </div>
 
             <div class="mb-3">
@@ -47,6 +44,18 @@
                 </div>
             </div>
 
+            <% if(pin.images.length > 1){ %>
+                <div class="mb-3">
+                    <% pin.images.forEach((img, i) => { %>
+                        <img src="<%= img.thumbnail %>" class="img-thumbnail" style="max-width: 200px;" alt="" >
+                        <div class="form-check-inline">
+                            <input type="checkbox" id="image-<%= i %>" name="deleteImages[]" value="<%= img.filename %>">
+                        </div>
+                        <label for="image-<%= i %>">Delete?</label>
+                    <% }) %>
+                </div>
+            <% } %>
+
             <div class="mb-3">
                 <button class="btn btn-success">Update The Planet Pin</button>
             </div>
@@ -54,22 +63,3 @@
         <a href="/earthExplorer/<%= pin._id %>">Back To PlanetPin</a>
     </div>
 </div>
-
-
-
-<!-- <% layout('layout/boilerplate') %>
-    <h1>Edit The PlanetPin</h1>
-    <form action="/earthExplorer/<%= pin._id %>?_method=PUT" method="POST">
-        <div>
-            <label for="title">title</label>
-            <input type="text" id="title" name="earthExplorer[title]" value="<%= pin.title %>">
-        </div>
-
-        <div>
-            <label for="location">location</label>
-            <input type="text" id="location" name="earthExplorer[location]" value="<%= pin.location %>">
-        </div>
-
-        <button>Update the PlanetPin</button>
-    </form>
-    <a href="/earthExplorer/<%= pin._id %>">Back To PlanetPin</a> -->

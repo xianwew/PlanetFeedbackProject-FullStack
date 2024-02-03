@@ -1,12 +1,21 @@
 const mongoose = require('mongoose');
 const Review = require('./review');
 
+const imageSchema = new mongoose.Schema({
+    url: String,
+    filename: String,
+});
+
+imageSchema.virtual('thumbnail').get(function() {
+    return this.url.replace('/upload', '/upload/w_200');
+});
+
 const planetPinSchema = new mongoose.Schema({
     title: String,
     price: Number,
     description: String,
     location: String,
-    image: String,
+    images: [imageSchema],
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',

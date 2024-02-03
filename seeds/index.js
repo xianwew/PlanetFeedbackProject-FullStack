@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { v4: uuidv4 } = require('uuid');
 const planetPins = require('../models/PlanetPin');
 const { places, descriptors } = require('./seedHelpers');
 const cities = require('./cities');
@@ -35,7 +36,17 @@ const seedDB = async () => {
         const pin = new planetPins({
             location: `${cities[randomNum].city}, ${cities[randomNum].state}`,
             title: `${descriptor} ${place}`,
-            image: `https://source.unsplash.com/random/1600x900/?${descriptor} ${place}`,
+            images: (() => {
+                const imagesArr = [];
+                const numberOfImages = Math.floor(Math.random() * 4 + 1);
+                for (let j = 0; j < numberOfImages; j++) {
+                    imagesArr.push({
+                        url: `https://source.unsplash.com/random/1600x900/?${descriptor} ${place}&${Math.floor(Math.random() * 1000) + 1}`,
+                        filename: `EarthFB/${uuidv4()}`,
+                    });
+                }
+                return imagesArr;
+            })(),
             description: des[Math.floor(Math.random() * (des.length - 1))],
             price: randomPrice,
             author: '65bc0ff5b871b1f0cf34d169',

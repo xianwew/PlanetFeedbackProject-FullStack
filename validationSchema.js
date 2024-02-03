@@ -4,11 +4,11 @@ const pinSchema = Joi.object({
     earthExplorer: Joi.object({
         title: Joi.string().required(),
         price: Joi.number().required().min(0),
-        image: Joi.string().required(),
         location: Joi.string().required(),
         description: Joi.string().required(),
         // author: Joi.string().length(24).hex().required(),
     }).required(),
+    deleteImages: Joi.array(),
 });
 
 module.exports.pinSchema = pinSchema;
