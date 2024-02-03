@@ -2,7 +2,7 @@
 <div class="row" >
     <h1 class="text-center">New Planet Pin</h1>
     <div class="col-12">
-        <form action="/earthExplorer" method="POST" novalidate class="validated-form">
+        <form action="/earthExplorer" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label" for="title">title</label>
                 <input class="form-control" type="text" id="title" name="earthExplorer[title]" required>
@@ -18,14 +18,14 @@
                     looks good!
                 </div>
             </div>
-
-            <div class="mb-3">
+            <input type="file" name="image" class="mb-3" multiple>
+            <!-- <div class="mb-3">
                 <label class="form-label" for="image">Image Url</label>
                 <input class="form-control" type="text" id="image" name="earthExplorer[image]" required>
                 <div class="valid-feedback">
                     looks good!
                 </div>
-            </div>
+            </div> -->
 
             <div class="mb-3">
                 <label class="form-label" for="price">Planet Pin Price</label>

@@ -4,11 +4,16 @@ const catchAsync = require('../utils/catchAsync');
 const {isLoggedIn, validatePin, isAuthor} = require('../middleware');
 const earthExplorers = require('../controllers/earthExplorer');
 const multer = require('multer');
-const upload = multer({des: 'uploads/'});
+const {storage} = require('../cloudinary');
+const upload = multer({storage});
 
 router.route('/')
     .get(catchAsync(earthExplorers.index))
-    .post(isLoggedIn, validatePin, catchAsync(earthExplorers.createNewPin));
+    .post(upload.array('image'), (req, res) => {
+        console.log(req.body, req.files);
+        res.send('it worked!');
+    });
+    // .post(isLoggedIn, validatePin, catchAsync(earthExplorers.createNewPin));
 
 router.get('/newPin', isLoggedIn, earthExplorers.new);
 
