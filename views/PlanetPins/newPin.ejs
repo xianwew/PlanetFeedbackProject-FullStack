@@ -1,10 +1,10 @@
 <% layout('layout/boilerplate') %>
-<div class="row" style="width: 70%; align-self: center; margin-top: 10vh;">
-    <h1 class="text-center">New Planet Pin</h1>
+<div class="row" style="width: 70%; align-items: center; height: 70%; margin: auto; margin-top: 4%;">
+    <h1 class="text-center" style="font-weight: 600;">New Planet Pin</h1>
     <div class="col-12">
         <form action="/earthExplorer" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
             <div class="mb-3">
-                <label class="form-label" for="title">title</label>
+                <label class="form-label" for="title" style="font-weight: 600;">Title</label>
                 <input class="form-control" type="text" id="title" name="earthExplorer[title]" required>
                 <div class="valid-feedback">
                     looks good!
@@ -12,19 +12,19 @@
             </div>
     
             <div class="mb-3">
-                <label class="form-label" for="location">location</label>
+                <label class="form-label" for="location" style="font-weight: 600;">Location</label>
                 <input class="form-control" type="text" id="location" name="earthExplorer[location]" required>
                 <div class="valid-feedback">
                     looks good!
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="image">Images</label>
+                <label class="form-label" for="image" style="font-weight: 600;">Images</label>
                 <input class="form-control" type="file" name="image" id="image" multiple required>
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="price">Planet Pin Price</label>
+                <label class="form-label" for="price" style="font-weight: 600;">Planet Pin Price</label>
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">$</span>
                     <input id="price" type="number" class="form-control" placeholder="0.00" aria-label="price"
@@ -36,7 +36,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="description">Description</label>
+                <label class="form-label" for="description" style="font-weight: 600;">Description</label>
                 <textarea class="form-control" type="text" id="description" name="earthExplorer[description]" rows="8" required></textarea>
                 <div class="valid-feedback">
                     looks good!
@@ -47,7 +47,6 @@
                 <button class="btn btn-success">Add New Pin</button>
             </div>
         </form>
-        <a href="/earthExplorer">All PlanetPins</a>
     </div>
 </div>
 

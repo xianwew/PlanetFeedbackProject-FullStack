@@ -25,7 +25,7 @@ const sample = (array) => {
 
 const seedDB = async () => {
     await planetPins.deleteMany({});
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 25; i++) {
         const randomNum = Math.floor(Math.random() * 1000);
         const randomPrice = Math.floor(Math.random() * 20) + 10;
         const place = sample(places);

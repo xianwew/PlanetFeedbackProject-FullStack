@@ -1,10 +1,10 @@
 <% layout('layout/boilerplate') %>
-<div class="row" style="width: 70%; align-self: center; margin-top: 10vh;">
-    <h1 class="text-center">Edit The Planet Pin</h1>
+<div class="row" style="width: 70%; align-items: center; height: 70%; margin: auto; margin-top: 4%;">
+    <h1 class="text-center" style="font-weight: 600;">Edit The Planet Pin</h1>
     <div class="col-12">
         <form action="/earthExplorer/<%= pin._id %>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
             <div class="mb-3">
-                <label class="form-label" for="title">title</label>
+                <label class="form-label" for="title" style="font-weight: 600;">Title</label>
                 <input class="form-control" type="text" id="title" name="earthExplorer[title]"  value="<%= pin.title %>" required>
                 <div class="valid-feedback">
                     looks good!
@@ -12,7 +12,7 @@
             </div>
     
             <div class="mb-3">
-                <label class="form-label" for="location">location</label>
+                <label class="form-label" for="location" style="font-weight: 600;">Location</label>
                 <input class="form-control" type="text" id="location" name="earthExplorer[location]"  value="<%= pin.location %>" required>
                 <div class="valid-feedback">
                     looks good!
@@ -20,12 +20,12 @@
             </div>
 
             <div class="mb-3 custom-file">
-                <label class="form-label" for="image">Add Images</label>
+                <label class="form-label" for="image" style="font-weight: 600;">Add Images</label>
                 <input class="form-control" type="file" name="image" id="image" multiple>
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="price">Planet Pin Price</label>
+                <label class="form-label" for="price" style="font-weight: 600;">Planet Pin Price</label>
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">$</span>
                     <input id="price" type="number" class="form-control" placeholder="0.00" aria-label="price"
@@ -37,7 +37,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="description">Description</label>
+                <label class="form-label" for="description" style="font-weight: 600;">Description</label>
                 <textarea class="form-control" type="text" id="description" name="earthExplorer[description]" rows="8" required><%= pin.description %></textarea>
                 <div class="valid-feedback">
                     looks good!
@@ -45,21 +45,24 @@
             </div>
 
             <% if(pin.images.length > 1){ %>
-                <div class="mb-3">
+                <div class="mb-3 d-flex" style="width: 100%; justify-content: space-evenly;">
                     <% pin.images.forEach((img, i) => { %>
-                        <img src="<%= img.thumbnail %>" class="img-thumbnail" style="max-width: 200px;" alt="" >
-                        <div class="form-check-inline">
-                            <input type="checkbox" id="image-<%= i %>" name="deleteImages[]" value="<%= img.filename %>">
+                        <div class="d-flex flex-column align-items-center" style="max-width: 200px;"> 
+                            <img src="<%= img.thumbnail %>" class="img-thumbnail" alt="" >
+                            <div class="form-check-inline d-flex align-items-center" style="margin-top: 5px;"> 
+                                <input type="checkbox" class="form-check-input" style="width: 20px; height: 20px;" id="image-<%= i %>" name="deleteImages[]" value="<%= img.filename %>">
+                                <label for="image-<%= i %>" class="ms-2" style="user-select: none; font-weight: 700; transform: translateY(2px);">Delete?</label>
+                            </div>
                         </div>
-                        <label for="image-<%= i %>">Delete?</label>
                     <% }) %>
                 </div>
             <% } %>
 
-            <div class="mb-3">
+            <div class="mb-3 d-flex align-items-center">
                 <button class="btn btn-success">Update The Planet Pin</button>
+                <a href="/earthExplorer/<%= pin._id %>" style="margin-left: 20px;">Back To PlanetPin</a>
             </div>
         </form>
-        <a href="/earthExplorer/<%= pin._id %>">Back To PlanetPin</a>
+
     </div>
 </div>
