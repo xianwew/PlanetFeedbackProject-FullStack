@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/stylesheets/stars.css">
 
 <script>
-    var pin = '<%- JSON.stringify(pin) %> ';
+    var pin = `<%- JSON.stringify(pin) %>`;
     var mapToken = '<%- process.env.MAPBOX_TOKEN %> ';
 </script>
 
@@ -40,9 +40,9 @@
             </ul>
             <% if(currentUser && pin.author.equals(currentUser._id)){ %>
                 <div class="card-body">
-                    <a class="card-link btn btn-primary" href="/earthExplorer/<%= pin._id %>/edit">Edit</a>
+                    <a class="card-link btn btn-primary btn-normal" href="/earthExplorer/<%= pin._id %>/edit">Edit</a>
                     <form class="d-inline" action="/earthExplorer/<%= pin._id %>?_method=Delete" method="POST">
-                        <button class="btn btn-danger" >Delete</button>
+                        <button class="btn btn-danger btn-dangerous" >Delete</button>
                     </form>
                 </div>
             <% } %>
@@ -82,7 +82,7 @@
                                 Looks good!
                             </div>
                         </div>
-                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-success btn-normal">Submit</button>
                     </form>
                 <% } %>
                 <h4 style="font-weight: 700; text-align: center;" class="mb-3">All Reviews</h4>
@@ -111,7 +111,11 @@
                     <div style="display: flex; flex-direction: column; justify-content: flex-end; ">
                         <div style="text-align: center; margin-top: 3%;">
                             <img src="/assets/images/empty_box.png" alt="" style="width: 30%; opacity: 0.8; margin-bottom: 10px;">
-                            <p style="font-weight: 500;">Please log in and post some reviews here ^_^</p>
+                            <% if(!currentUser){ %>
+                                <p style="font-weight: 500;">Please log in and post some reviews here ^_^</p>
+                            <% } else{ %>
+                                <p style="font-weight: 500;">Please post some reviews here ^_^</p>
+                            <% } %>
                         </div>
                     </div>
                 <% } %>
@@ -120,5 +124,8 @@
     </div>
 </div>
 
-
+<script>
+    var planetpins = <%- JSON.stringify(pin) %>;
+    var mapToken = '<%- process.env.MAPBOX_TOKEN %> ';
+</script>
 <script src="/javascripts/detailPageMap.js"></script>

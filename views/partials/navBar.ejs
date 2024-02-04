@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="position: fixed; width: 100vw; z-index: 99; background-color: rgb(173, 204, 255);">
-  <div class="container-fluid" style="color: rgb(0, 54, 83);">
+<nav class="navbar navbar-expand-lg navbar-dark nav-bar">
+  <div class="container-fluid">
     <a class="navbar-brand" style="text-decoration: none; color: inherit; text-shadow: 5; font-size: large; font-weight: 900;" href="#">PlanetFeedBack</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,18 +7,36 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" style="color: inherit;" href="/">Home</a>
-        <a class="nav-link" style="color: inherit;" href="/earthExplorer">Planet Pins</a>
-        <a class="nav-link" style="color: inherit;" href="/earthExplorer/newPin">New Planet Pin</a>
+        <a class="nav-link deactive-link" href="/">Home</a>
+        <a class="nav-link deactive-link" href="/earthExplorer">Planet Pins</a>
+        <a class="nav-link deactive-link" href="/earthExplorer/newPin">New Planet Pin</a>
       </div>
       <div class="navbar-nav " style="margin-left: auto; margin-right: 1vw;">
         <% if(!currentUser){ %>
-          <a class="nav-link" style="color: inherit; font-weight: 700;" href="/login">Login</a>
-          <a class="nav-link" style="color: inherit; font-weight: 700;" href="/register">Register</a>
+          <a class="nav-link deactive-link" style="font-weight: 700;" href="/login">Login</a>
+          <a class="nav-link deactive-link" style="font-weight: 700;" href="/register">Register</a>
         <% } else {%>
-            <a class="nav-link" style="color: inherit; font-weight: 700;" href="/Logout">Logout</a>
+            <a class="nav-link deactive-link" style="font-weight: 700;" href="/Logout">Logout</a>
         <% } %>
       </div>
     </div>
   </div>
 </nav>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+    navLinks.forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add('active-link'); 
+      }
+      else{
+        link.classList.remove('active-link'); 
+        link.classList.add('deactive-link'); 
+      }
+    });
+  });
+</script>

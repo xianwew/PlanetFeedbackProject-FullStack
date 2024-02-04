@@ -43,6 +43,7 @@ module.exports.viewPin = async (req, res) => {
         req.flash('error', 'can not find that planet pin!');
         return res.redirect('/earthExplorer');
     }
+
     res.render('./PlanetPins/details', { pin });
 }
 

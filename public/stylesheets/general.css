@@ -1,0 +1,84 @@
+.active-link {
+    color: #ffffff !important;
+    background-color: #545499;
+    border-radius: 10px;
+  }
+
+.deactive-link {
+    color: rgb(0, 54, 83);
+    border-radius: 10px;
+}
+
+.deactive-link:hover {
+    color: #ddf5ff;
+}
+
+.nav-bar {
+    position: fixed; 
+    width: 100vw; 
+    z-index: 99; 
+    background-color: rgb(121, 187, 234);
+}
+
+.footer-style {
+    background-color: rgb(121, 187, 234);
+    z-index: 99; 
+    height: 12vh;
+}
+
+.button {
+    background-color: rgb(121, 187, 234);
+}
+
+.btn-index {
+    background-color: rgb(205, 233, 253);
+    border: 3px rgb(121, 187, 234) solid;
+    border-radius: 10px;
+    color: rgb(0, 54, 83);
+    font-size: 1.1rem;
+    font-weight: 550;
+}
+
+.btn-index:hover{
+    background-color: rgb(121, 187, 234);
+    border-color: rgb(121, 187, 234);
+}
+
+.btn-index:active{
+    background-color: rgb(163, 206, 236) !important;
+    border-color: rgb(163, 206, 236) !important;
+}
+
+.btn-normal {
+    background-color: #5b5ba9;
+    border: 2px #5b5ba9 solid;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+}
+
+.btn-normal:hover {
+    background-color: #8586d0;
+    border-color: #8586d0;
+}
+
+.btn-normal:active {
+    background-color: #aaabe2 !important;
+    border-color: #aaabe2 !important;
+}
+
+.btn-dangerous {
+    background-color: #d11d1d;
+    border: 2px #d11d1d solid;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+}
+
+.btn-dangerous:hover {
+    background-color: #ed4141;
+    border-color: #ed4141;
+}
+
+.btn-dangerous:active {
+    background-color: #f95e5e !important;
+    border-color: #f95e5e !important;
+}
