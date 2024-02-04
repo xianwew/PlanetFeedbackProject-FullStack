@@ -1,18 +1,15 @@
+if(process.env.NODE_ENV !== 'production'){
+    require('dotenv').config();
+}
+
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 const planetPins = require('../models/PlanetPin');
-const { places, descriptors } = require('./seedHelpers');
+const { places, descriptors, des } = require('./seedHelpers');
 const cities = require('./cities');
-const des = ["Nestled in the heart of lush, emerald forests, this enchanting waterfall cascades gracefully, creating a serene oasis of natural wonder.",
-    "A symphony of colors and fragrances, the vibrant botanical gardens transport visitors to a paradise of rare and exotic blooms.",
-    "Perched atop a craggy cliff, the ancient castle's weathered stones whisper tales of bygone eras, offering breathtaking panoramic views of the surrounding countryside.",
-    "With its cobblestone streets, charming cafes, and centuries-old architecture, this historic village is a picturesque time capsule where every corner tells a story.",
-    "Sunset hues dance on the tranquil waters of the serene lake, casting a golden spell on all who come to witness nature's nightly spectacle.",
-    "Wander through the aromatic fields of lavender, where a sea of purple blooms stretches to the horizon, creating a fragrant, soothing haven.",
-    "The bustling marketplace is a kaleidoscope of sights and sounds, where artisans craft their wares, and the aroma of exotic spices fills the air.",
-    "The ancient ruins, cloaked in moss and mystery, stand as a testament to the passage of time, inviting curious souls to explore their timeless secrets.",
-    "Towering granite peaks pierce the heavens, their snow-capped summits glistening in the crisp mountain air, a playground for adventurers.",
-    "Underneath the starlit sky, the tranquil beach unveils its own magic, where the gentle lullaby of waves serenades those who seek solace by the sea."];
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({accessToken: mapBoxToken});
 
 mongoose.connect('mongodb://127.0.0.1:27017/planetFB')
     .then(() => { console.log('connection opened!'); })
@@ -28,11 +25,15 @@ const sample = (array) => {
 
 const seedDB = async () => {
     await planetPins.deleteMany({});
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 100; i++) {
         const randomNum = Math.floor(Math.random() * 1000);
         const randomPrice = Math.floor(Math.random() * 20) + 10;
         const place = sample(places);
         const descriptor = sample(descriptors);
+        const geoData = await geocoder.forwardGeocode({
+            query: `${cities[randomNum].city}, ${cities[randomNum].state}`,
+            limit: 1,
+        }).send();
         const pin = new planetPins({
             location: `${cities[randomNum].city}, ${cities[randomNum].state}`,
             title: `${descriptor} ${place}`,
@@ -41,7 +42,7 @@ const seedDB = async () => {
                 const numberOfImages = Math.floor(Math.random() * 4 + 1);
                 for (let j = 0; j < numberOfImages; j++) {
                     imagesArr.push({
-                        url: `https://source.unsplash.com/random/1600x900/?${descriptor} ${place}&${Math.floor(Math.random() * 1000) + 1}`,
+                        url: `https://source.unsplash.com/random/1600x900/?${descriptor} ${place}&${Math.floor(Math.random() * 100) + 1}`,
                         filename: `EarthFB/${uuidv4()}`,
                     });
                 }
@@ -50,6 +51,7 @@ const seedDB = async () => {
             description: des[Math.floor(Math.random() * (des.length - 1))],
             price: randomPrice,
             author: '65bc0ff5b871b1f0cf34d169',
+            geometry: geoData.body.features[0].geometry,
         });
         await pin.save();
     }

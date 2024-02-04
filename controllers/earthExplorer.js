@@ -1,6 +1,9 @@
 const PlanetPins = require('../models/PlanetPin');
 const {cloudinary} = require('../cloudinary');
-const AppError = require('../utils/ExpressError')
+const AppError = require('../utils/ExpressError');
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({accessToken: mapBoxToken});
 
 module.exports.index = async (req, res) => {
     const pins = await PlanetPins.find({});
@@ -15,11 +18,16 @@ module.exports.createNewPin = async (req, res) => {
     if(!req.files){
         throw new AppError('You must have images of this planet pin!', 400);
     }
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.earthExplorer.location,
+        limit: 1,
+    }).send();
     const pin = new PlanetPins(req.body.earthExplorer);
+    pin.geometry = geoData.body.features[0].geometry;
     pin.author = req.user._id;
     pin.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    console.log(pin);
     await pin.save();
-    //console.log(pin);
     req.flash('success', 'successfully made a new planet pin!');
     res.redirect(`/earthExplorer/${pin._id}`);
 }

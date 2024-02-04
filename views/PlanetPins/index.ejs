@@ -1,14 +1,14 @@
 <% layout('layout/boilerplate') %>
-    <div style="width: 100%; margin: auto;">
+    <div style="width: 65%; margin: auto; margin-top: 100px;">
         <h1 class="mb-3">All Planet Pins</h1>
             <% for(let pin of pins){ %>
                 <div class="card">
-                    <div class="row">
-                        <div class="col-md-4">
+                    <div class="row" >
+                        <div class="col-md-4" style="max-height: 20vh; overflow: hidden;">
                             <img class="img-fluid" src="<%= pin.images[0].url %>" alt="image">
                         </div>
                         <div class="col-md-8">
-                            <div class="card-body">
+                            <div class="card-body" >
                                 <h5 class="card-title"><%= pin.title %></h5>
                                 <p class="card-text"><%= pin.description %></p>
                                 <p class="card-text"><small class="text-muted"><%= pin.location %></small></p>

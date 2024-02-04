@@ -6,7 +6,7 @@ const imageSchema = new mongoose.Schema({
     filename: String,
 });
 
-imageSchema.virtual('thumbnail').get(function() {
+imageSchema.virtual('thumbnail').get(function () {
     return this.url.replace('/upload', '/upload/w_200');
 });
 
@@ -15,6 +15,17 @@ const planetPinSchema = new mongoose.Schema({
     price: Number,
     description: String,
     location: String,
+    geometry: {
+        type: {
+            type: String,
+            enum: ['Point'], 
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    },
     images: [imageSchema],
     author: {
         type: mongoose.Schema.Types.ObjectId,
@@ -29,7 +40,7 @@ const planetPinSchema = new mongoose.Schema({
 });
 
 planetPinSchema.post('findOneAndDelete', async (pin) => {
-    if(pin){
+    if (pin) {
         await Review.deleteMany({
             _id: {
                 $in: pin.reviews,
