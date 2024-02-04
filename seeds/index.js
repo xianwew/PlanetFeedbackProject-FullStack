@@ -25,17 +25,33 @@ const sample = (array) => {
 
 const seedDB = async () => {
     await planetPins.deleteMany({});
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 30; i++) {
         const randomNum = Math.floor(Math.random() * 1000);
         const randomPrice = Math.floor(Math.random() * 20) + 10;
         const place = sample(places);
         const descriptor = sample(descriptors);
-        const geoData = await geocoder.forwardGeocode({
-            query: `${cities[randomNum].city}, ${cities[randomNum].state}`,
+        const location = `${cities[randomNum].city}, ${cities[randomNum].state}`;
+        var geoData = await geocoder.forwardGeocode({
+            query: location,
             limit: 1,
         }).send();
+        var geometry = geoData.body.features[0].geometry;
+        if(!geometry){
+            geoData = await geocoder.forwardGeocode({
+                query: cities[randomNum].state,
+                limit: 1,
+            }).send();
+            geometry = geoData.body.features[0].geometry;
+        }
+        if(!geometry){
+            geoData = await geocoder.forwardGeocode({
+                query: cities[randomNum].city,
+                limit: 1,
+            }).send();
+            geometry = geoData.body.features[0].geometry;
+        }
         const pin = new planetPins({
-            location: `${cities[randomNum].city}, ${cities[randomNum].state}`,
+            location: location,
             title: `${descriptor} ${place}`,
             images: (() => {
                 const imagesArr = [];
@@ -51,7 +67,7 @@ const seedDB = async () => {
             description: des[Math.floor(Math.random() * (des.length - 1))],
             price: randomPrice,
             author: '65bc0ff5b871b1f0cf34d169',
-            geometry: geoData.body.features[0].geometry,
+            geometry: geometry,
         });
         await pin.save();
     }
