@@ -33,7 +33,7 @@ const sample = (array) => {
 const seedDB = async () => {
     await planetPins.deleteMany({});
     for (let i = 0; i < 200; i++) {
-        const randomNum = Math.floor(Math.random() * 1000);
+        const randomNum = Math.floor(Math.random() * cities.length);
         const randomPrice = Math.floor(Math.random() * 20) + 10;
         const place = sample(places);
         const descriptor = sample(descriptors);
