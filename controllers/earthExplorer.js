@@ -14,6 +14,14 @@ const getFormattedDate = () => {
     return formattedDate;
 }
 
+const getGeometryData = async (req) => {
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.earthExplorer.location,
+        limit: 1,
+    }).send();
+    return geoData.body.features[0].geometry;
+}
+
 module.exports.index = async (req, res) => {
     const pins = await PlanetPins.find({});
     res.render('PlanetPins/index', { pins });
@@ -27,12 +35,8 @@ module.exports.createNewPin = async (req, res) => {
     if(!req.files){
         throw new AppError('You must have images of this planet pin!', 400);
     }
-    const geoData = await geocoder.forwardGeocode({
-        query: req.body.earthExplorer.location,
-        limit: 1,
-    }).send();
     const pin = new PlanetPins(req.body.earthExplorer);
-    pin.geometry = geoData.body.features[0].geometry;
+    pin.geometry = await getGeometryData(req);
     pin.author = req.user._id;
     pin.date = getFormattedDate();
     pin.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
@@ -76,6 +80,7 @@ module.exports.postEdit = async (req, res) => {
         throw new AppError('Invalid edit! You can not delete all the images of this planet pin!', 400);
     }
     const updatedPin = await PlanetPins.findByIdAndUpdate(req.params.id, { ...req.body.earthExplorer }, { runValidators: true });
+    updatedPin.geometry = await getGeometryData(req);
     const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
     updatedPin.images.push(...imgs);
     updatedPin.date = getFormattedDate();

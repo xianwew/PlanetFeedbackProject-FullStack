@@ -1,3 +1,5 @@
+const User=require('../models/user');
+
 module.exports.getRegisterForm = (req, res) => {
     res.render('users/register');
 }

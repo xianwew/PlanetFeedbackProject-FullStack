@@ -7,8 +7,10 @@ const { v4: uuidv4 } = require('uuid');
 const planetPins = require('../models/PlanetPin');
 const { places, descriptors, des } = require('./seedHelpers');
 const cities = require('./cities');
+const dbUrl = process.env.DB_URL;
+console.log(dbUrl);
 
-mongoose.connect('mongodb://127.0.0.1:27017/planetFB')
+mongoose.connect(dbUrl)
     .then(() => { console.log('connection opened!'); })
     .catch((e) => {
         console.log('error!');
@@ -53,7 +55,7 @@ const seedDB = async () => {
             })(),
             description: des[Math.floor(Math.random() * (des.length - 1))],
             price: randomPrice,
-            author: '65bc0ff5b871b1f0cf34d169',
+            author: '65c0755f6959cb78538f6fd9',
             geometry: {
                 type: 'Point',
                 coordinates: [
