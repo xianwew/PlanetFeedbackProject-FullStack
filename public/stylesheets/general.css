@@ -1,12 +1,14 @@
 .active-link {
     color: #ffffff !important;
-    background-color: #545499;
+    background-color: rgb(98, 134, 232);
     border-radius: 10px;
+    font-weight: 600;
   }
 
 .deactive-link {
     color: rgb(0, 54, 83);
     border-radius: 10px;
+    font-weight: 600;
 }
 
 .deactive-link:hover {
@@ -17,17 +19,17 @@
     position: fixed; 
     width: 100vw; 
     z-index: 99; 
-    background-color: rgb(121, 187, 234);
+    background-color: rgb(153, 204, 240);
 }
 
 .footer-style {
-    background-color: rgb(121, 187, 234);
+    background-color: rgb(153, 204, 240);
     z-index: 99; 
     height: 12vh;
 }
 
 .button {
-    background-color: rgb(121, 187, 234);
+    background-color: rgb(153, 204, 240);
 }
 
 .btn-index {
@@ -36,34 +38,37 @@
     border-radius: 10px;
     color: rgb(0, 54, 83);
     font-size: 1.1rem;
-    font-weight: 550;
+    font-weight: 600;
+    font-family: 'Raleway', sans-serif;
 }
 
 .btn-index:hover{
-    background-color: rgb(121, 187, 234);
-    border-color: rgb(121, 187, 234);
+    background-color: rgb(153, 204, 240);
+    border-color: rgb(153, 204, 240);
 }
 
 .btn-index:active{
-    background-color: rgb(163, 206, 236) !important;
-    border-color: rgb(163, 206, 236) !important;
+    background-color: rgb(98, 134, 232) !important;
+    border-color: rgb(98, 134, 232) !important;
 }
 
 .btn-normal {
-    background-color: #5b5ba9;
-    border: 2px #5b5ba9 solid;
+    background-color: rgb(98, 134, 232);
+    border: 2px rgb(98, 134, 232) solid;
     border-radius: 10px;
     color: rgb(255, 255, 255);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 550;
 }
 
 .btn-normal:hover {
-    background-color: #8586d0;
-    border-color: #8586d0;
+    background-color: rgb(100, 167, 226);
+    border-color: rgb(100, 167, 226);
 }
 
 .btn-normal:active {
-    background-color: #aaabe2 !important;
-    border-color: #aaabe2 !important;
+    background-color: #2c56b1 !important;
+    border-color: #2c56b1 !important;
 }
 
 .btn-dangerous {
@@ -71,6 +76,8 @@
     border: 2px #d11d1d solid;
     border-radius: 10px;
     color: rgb(255, 255, 255);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 550;
 }
 
 .btn-dangerous:hover {
@@ -79,6 +86,49 @@
 }
 
 .btn-dangerous:active {
-    background-color: #f95e5e !important;
-    border-color: #f95e5e !important;
+    background-color: rgb(190, 11, 11) !important;
+    border-color: rgb(190, 11, 11) !important;
+}
+
+.btn-safe{
+    background-color: rgb(57, 171, 133); 
+    border-color: rgb(57, 171, 133); 
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 550;
+}
+
+.btn-safe:hover{
+    background-color: rgb(105, 224, 184); 
+    border-color: rgb(105, 224, 184); 
+}
+
+.btn-safe:active{
+    background-color: rgb(64, 170, 126); 
+    border-color: rgb(64, 170, 126); 
+}
+
+.customFont{
+    font-family: 'Raleway', sans-serif;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    align-self: center;
+    z-index: -1;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.customCardBody{
+    padding: 3vw; 
+    background-color: rgba(51, 51, 51, 0.837);
+    border-radius: 20px;
+}
+
+.customTextInput{
+    background-color: rgba(156, 172, 174, 0.583);
 }

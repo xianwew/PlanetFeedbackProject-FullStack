@@ -1,22 +1,25 @@
 <nav class="navbar navbar-expand-lg navbar-dark nav-bar">
   <div class="container-fluid">
-    <a class="navbar-brand" style="text-decoration: none; color: inherit; text-shadow: 5; font-size: large; font-weight: 900;" href="#">PlanetFeedBack</a>
+    <a class="navbar-brand customFont" style="text-decoration: none; color: inherit; text-shadow: 5; font-size: large; font-weight: 900;" href="#">
+      <img src="/assets/icons/earthIcon2.png" style="width: 35px; height: 35px; margin-right: 5px;" alt="Earth">
+      <span>FeedBack</span>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link deactive-link" href="/">Home</a>
-        <a class="nav-link deactive-link" href="/earthExplorer">Planet Pins</a>
-        <a class="nav-link deactive-link" href="/earthExplorer/newPin">New Planet Pin</a>
+        <a class="nav-link deactive-link customFont" href="/" style="margin-left: 8px;">Home</a>
+        <a class="nav-link deactive-link customFont" href="/earthExplorer" style="margin-left: 8px;">Planet Pins</a>
+        <a class="nav-link deactive-link customFont" href="/earthExplorer/newPin" style="margin-left: 8px;">New Planet Pin</a>
       </div>
       <div class="navbar-nav " style="margin-left: auto; margin-right: 1vw;">
         <% if(!currentUser){ %>
-          <a class="nav-link deactive-link" style="font-weight: 700;" href="/login">Login</a>
-          <a class="nav-link deactive-link" style="font-weight: 700;" href="/register">Register</a>
+          <a class="nav-link deactive-link customFont" style="font-weight: 700;" href="/login" >Login</a>
+          <a class="nav-link deactive-link customFont" style="font-weight: 700;" href="/register" >Register</a>
         <% } else {%>
-            <a class="nav-link deactive-link" style="font-weight: 700;" href="/Logout">Logout</a>
+            <a class="nav-link deactive-link customFont" style="font-weight: 700;" href="/Logout">Logout</a>
         <% } %>
       </div>
     </div>

@@ -74,7 +74,7 @@ app.use('/earthExplorer/:id/reviews', reviewsRoutes);
 app.use('/', userRoutes);
 
 app.get('/', (req, res) => {
-    res.send('It is working!');
+    res.render('./home');
 });
 
 app.all('*', (req, res, next) => {

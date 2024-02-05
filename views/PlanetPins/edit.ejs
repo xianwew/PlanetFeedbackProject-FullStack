@@ -1,10 +1,10 @@
 <% layout('layout/boilerplate') %>
 <div class="row" style="width: 70%; align-items: center; height: 70%; margin: auto; margin-top: 4%;">
-    <h1 class="text-center" style="font-weight: 600;">Edit The Planet Pin</h1>
+    <h1 class="text-center customFont" style="font-weight: 600;">Edit The Planet Pin</h1>
     <div class="col-12">
         <form action="/earthExplorer/<%= pin._id %>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
             <div class="mb-3">
-                <label class="form-label" for="title" style="font-weight: 600;">Title</label>
+                <label class="form-label customFont" for="title" style="font-weight: 600;">Title</label>
                 <input class="form-control" type="text" id="title" name="earthExplorer[title]"  value="<%= pin.title %>" required>
                 <div class="valid-feedback">
                     looks good!
@@ -12,7 +12,7 @@
             </div>
     
             <div class="mb-3">
-                <label class="form-label" for="location" style="font-weight: 600;">Location</label>
+                <label class="form-label customFont" for="location" style="font-weight: 600;">Location</label>
                 <input class="form-control" type="text" id="location" name="earthExplorer[location]"  value="<%= pin.location %>" required>
                 <div class="valid-feedback">
                     looks good!
@@ -20,12 +20,12 @@
             </div>
 
             <div class="mb-3 custom-file">
-                <label class="form-label" for="image" style="font-weight: 600;">Add Images</label>
+                <label class="form-label customFont" for="image" style="font-weight: 600;">Add Images</label>
                 <input class="form-control" type="file" name="image" id="image" multiple>
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="price" style="font-weight: 600;">Planet Pin Price</label>
+                <label class="form-label customFont" for="price" style="font-weight: 600;">Planet Pin Price</label>
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">$</span>
                     <input id="price" type="number" class="form-control" placeholder="0.00" aria-label="price"
@@ -37,7 +37,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="description" style="font-weight: 600;">Description</label>
+                <label class="form-label customFont" for="description" style="font-weight: 600;">Description</label>
                 <textarea class="form-control" type="text" id="description" name="earthExplorer[description]" rows="8" required><%= pin.description %></textarea>
                 <div class="valid-feedback">
                     looks good!
@@ -59,8 +59,8 @@
             <% } %>
 
             <div class="mb-3 d-flex align-items-center">
-                <button class="btn btn-success btn-normal">Update The Planet Pin</button>
-                <a href="/earthExplorer/<%= pin._id %>" style="margin-left: 20px; font-weight: 550;">Back To PlanetPin</a>
+                <button class="btn btn-success btn-normal customFont">Update The Planet Pin</button>
+                <a href="/earthExplorer/<%= pin._id %>" style="margin-left: 20px; font-weight: 700;" class="customFont">Back To PlanetPin</a>
             </div>
         </form>
 

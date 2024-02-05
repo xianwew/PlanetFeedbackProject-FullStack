@@ -5,6 +5,15 @@ const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({accessToken: mapBoxToken});
 
+const getFormattedDate = () => {
+    const currentDate = new Date();
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); 
+    const year = currentDate.getFullYear().toString().slice(-2); 
+    const formattedDate = `${month}/${day}/${year}`;
+    return formattedDate;
+}
+
 module.exports.index = async (req, res) => {
     const pins = await PlanetPins.find({});
     res.render('PlanetPins/index', { pins });
@@ -25,6 +34,7 @@ module.exports.createNewPin = async (req, res) => {
     const pin = new PlanetPins(req.body.earthExplorer);
     pin.geometry = geoData.body.features[0].geometry;
     pin.author = req.user._id;
+    pin.date = getFormattedDate();
     pin.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     console.log(pin);
     await pin.save();
@@ -68,6 +78,7 @@ module.exports.postEdit = async (req, res) => {
     const updatedPin = await PlanetPins.findByIdAndUpdate(req.params.id, { ...req.body.earthExplorer }, { runValidators: true });
     const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
     updatedPin.images.push(...imgs);
+    updatedPin.date = getFormattedDate();
     await updatedPin.save();
     if(req.body.deleteImages){
         for(let filename of req.body.deleteImages){

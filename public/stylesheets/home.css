@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.073);
+}
+
+.heading {
+    font-weight: 700;
+    font-size: 3rem;
+    user-select: none;
+    text-align: center;
+    margin-bottom: 20px;
+    color: azure;
+    font-family: 'Raleway', sans-serif;
+}
+
+.get-started-button {
+    z-index: 1;
+}
+
+.homePageBtn{
+    height: 2.5vw;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 1.5rem;
+    height: 60px;
+    font-family: 'Raleway', sans-serif;
+}

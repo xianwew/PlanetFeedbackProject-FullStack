@@ -15,6 +15,14 @@ mongoose.connect('mongodb://127.0.0.1:27017/planetFB')
         console.log(e);
     });
 
+const getFormattedDate = () => {
+    const currentDate = new Date();
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); 
+    const year = currentDate.getFullYear().toString().slice(-2); 
+    const formattedDate = `${month}/${day}/${year}`;
+    return formattedDate;
+}
 
 const sample = (array) => {
     return array[Math.floor(Math.random() * array.length)]
@@ -22,7 +30,7 @@ const sample = (array) => {
 
 const seedDB = async () => {
     await planetPins.deleteMany({});
-    for (let i = 0; i < 800; i++) {
+    for (let i = 0; i < 200; i++) {
         const randomNum = Math.floor(Math.random() * 1000);
         const randomPrice = Math.floor(Math.random() * 20) + 10;
         const place = sample(places);
@@ -31,6 +39,7 @@ const seedDB = async () => {
         const pin = new planetPins({
             location: location,
             title: `${descriptor} ${place}`,
+            date: getFormattedDate(),
             images: (() => {
                 const imagesArr = [];
                 const numberOfImages = Math.floor(Math.random() * 4 + 1);

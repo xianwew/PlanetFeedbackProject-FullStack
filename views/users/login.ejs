@@ -1,21 +1,24 @@
 <% layout('layout/boilerplate') %>
 <div style="width: 70%; align-self: center; margin-top: 20vh;">
-    <h1 style="text-align: center; font-weight: 700;">Login</h1>
-    <form action="/login" method="POST" class="validated-form" novalidate>
-        <div class="mb-3">
-            <label class="form-label" for="username">Username</label>
-            <input class="form-control" type="text" id="username" name="username" required>
-            <div class="valid-feedback">
-                looks good!
+    <img src="/assets/images/detailPageImage5.jpg" alt="" class="background-image" style="height: 100%; opacity: 0.92;">
+    <div class="customCardBody">
+        <h1 style="text-align: center; font-weight: bold; color: rgb(153, 204, 240); font-size: 5rem;" class="customFont">Login</h1>
+        <form action="/login" method="POST" class="validated-form" novalidate>
+            <div class="mb-3">
+                <label class="form-label customFont" for="username" style="font-weight: 700; color: rgb(153, 204, 240);">Username</label>
+                <input class="form-control customFont customTextInput" type="text" id="username" name="username" required>
+                <div class="valid-feedback">
+                    looks good!
+                </div>
             </div>
-        </div>
-        <div class="mb-3">
-            <label class="form-label" for="password">Password</label>
-            <input class="form-control" type="password" id="password" name="password" required>
-            <div class="valid-feedback">
-                looks good!
+            <div class="mb-3">
+                <label class="form-label" for="password" style="font-weight: 700; color: rgb(153, 204, 240);">Password</label>
+                <input class="form-control customFont customTextInput" type="password" id="password" name="password" required>
+                <div class="valid-feedback">
+                    looks good!
+                </div>
             </div>
-        </div>
-        <button class="btn btn-success">login</button>
-    </form>
+            <button class="btn btn-success btn-normal">login</button>
+        </form>
+    </div>
 </div>

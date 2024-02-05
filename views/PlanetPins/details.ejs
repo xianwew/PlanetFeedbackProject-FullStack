@@ -30,24 +30,24 @@
                 <% } %>
             </div>
             <div class="card-body">
-                <h5 class="card-title"><%= pin.title %></h5>
-                <p class="card-text"><%= pin.description %></p>
+                <h5 class="card-title customFont" style="font-weight: 900; font-size: 1.8rem;"><%= pin.title %></h5>
+                <p class="card-text customFont" style="font-weight: 550;"><%= pin.description %></p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item text-muted"><%= pin.location %></li>
-                <li class="list-group-item text-muted">Submitted by: <%= pin.author.username %></li>
-                <li class="list-group-item">$<%= pin.price %>/night</li>
+                <li class="list-group-item text-muted customFont"><%= pin.location %></li>
+                <li class="list-group-item text-muted customFont">Submitted by: <%= pin.author.username %></li>
+                <li class="list-group-item customFont">$<%= pin.price %>/night</li>
             </ul>
             <% if(currentUser && pin.author.equals(currentUser._id)){ %>
-                <div class="card-body">
-                    <a class="card-link btn btn-primary btn-normal" href="/earthExplorer/<%= pin._id %>/edit">Edit</a>
+                <div style="height: min-content; display: flex; align-items: center; padding: .5vw; padding-top: 1vh; padding-bottom: 1vh;">
+                    <a class="card-link btn btn-primary btn-normal" href="/earthExplorer/<%= pin._id %>/edit" style="margin-right: .6vw;">Edit</a>
                     <form class="d-inline" action="/earthExplorer/<%= pin._id %>?_method=Delete" method="POST">
                         <button class="btn btn-danger btn-dangerous" >Delete</button>
                     </form>
                 </div>
             <% } %>
             <div class="card-footer text-muted">
-                2 days ago
+                Last updated on: <%= pin.date %>
             </div>
         </div>
     </div>
@@ -56,10 +56,10 @@
             <div id='map' style='width: 100%; height: 25vh; margin-bottom: 2vh;'></div>
             <div style="margin: 0 1vw 0 1vw;">
                 <% if(currentUser){ %>
-                    <h4 style="font-weight: 700; text-align: center;" class="mb-3">Write a Review</h4>
+                    <h4 style="font-weight: 700; text-align: center;" class="mb-3 customFont">Write a Review</h4>
                     <form action="/earthExplorer/<%= pin._id %>/reviews" method="POST" class="mb-3 validated-form" novalidate>
                         <div class="d-flex" style="align-items: center; height: 30px; margin-right: 20px;">
-                            <p style="font-weight: 700; font-size: medium;">Review Text</p>
+                            <p style="font-weight: 700; font-size: medium;" class="customFont">Review Text</p>
                             <div style="margin-left: auto;">
                                 <fieldset class="starability-grow" >
                                     <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
@@ -85,15 +85,15 @@
                         <button class="btn btn-success btn-normal">Submit</button>
                     </form>
                 <% } %>
-                <h4 style="font-weight: 700; text-align: center;" class="mb-3">All Reviews</h4>
+                <h4 style="font-weight: 700; text-align: center;" class="mb-3 customFont">All Reviews</h4>
                 <% if( pin.reviews.length > 0){ %>
                     <div style="overflow-y: scroll; height: 25vh">
                     <% for (let r of pin.reviews){ %>
                         <div class="card mb-2">
                             <div class="card-body">
                                 <div class="d-flex">
-                                    <h5 class="card-title" style="font-weight: 600;"><%= r.author.username %></h5>
-                                    <p class="starability-result" data-rating="<%= r.rating %>" style="margin-left: auto;">
+                                    <h5 class="card-title customFont" style="font-weight: 700;"><%= r.author.username %></h5>
+                                    <p class="starability-result customFont" data-rating="<%= r.rating %>" style="margin-left: auto;">
                                     Rated: <%= r.rating %> stars
                                     </p>
                                 </div>
@@ -112,9 +112,9 @@
                         <div style="text-align: center; margin-top: 3%;">
                             <img src="/assets/images/empty_box.png" alt="" style="width: 30%; opacity: 0.8; margin-bottom: 10px;">
                             <% if(!currentUser){ %>
-                                <p style="font-weight: 500;">Please log in and post some reviews here ^_^</p>
+                                <p style="font-weight: 500;" class="customFont">Please log in and post some reviews here ^_^</p>
                             <% } else{ %>
-                                <p style="font-weight: 500;">Please post some reviews here ^_^</p>
+                                <p style="font-weight: 500;" class="customFont">Please post some reviews here ^_^</p>
                             <% } %>
                         </div>
                     </div>
