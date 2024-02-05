@@ -103,7 +103,8 @@ const fontSrcUrls = [
     "https://fonts.gstatic.com/",
 ];
 
-const cloudinaryEnv = process.env.COULDINARY_ENV;
+const cloudinaryEnv = process.env.CLOUDINARY_CLOUD_NAME;
+
 app.use(
     helmet.contentSecurityPolicy({
         directives: {
@@ -170,6 +171,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err });
 });
 
-app.listen(3000, () => {
-    console.log('Listening on port 3000!');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Listening on port ${port}!`);
 });
