@@ -11,16 +11,18 @@ const earthExplorerRoutes = require('./routes/earthExplorer');
 const reviewsRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users');
 const ExpressError = require('./utils/ExpressError');
-const session = require('express-session');
 const flash = require('connect-flash');
 const LocalStrategy = require('passport-local');
 const passport = require('passport');
 const User = require('./models/user');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
+const dbUrl = process.env.DB_URL;
+const session = require('express-session');
+const MongoDBStore = require("connect-mongo"); 
+const localDBUrl = 'mongodb://127.0.0.1:27017/planetFB';
 
-
-mongoose.connect('mongodb://127.0.0.1:27017/planetFB')
+mongoose.connect(dbUrl)
     .then(() => { console.log('connection opened!'); })
     .catch((e) => {
         console.log('error!');
@@ -38,9 +40,24 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
 
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
+
+const store = MongoDBStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret: secret,
+    }
+});
+
+store.on('error', () => {
+    console.log('session store error!');
+});
+
 const sessionConfig = {
+    store,
     name: 'session',
-    secret: 'thishouldbeabettersecret',
+    secret: secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -49,6 +66,7 @@ const sessionConfig = {
         maxAge: 1000 * 60 * 60 * 24 * 7,
     },
 }
+
 app.use(session(sessionConfig));
 app.use(flash());
 app.use(helmet());
