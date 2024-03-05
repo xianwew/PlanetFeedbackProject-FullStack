@@ -1,4 +1,4 @@
-if(process.env.NODE_ENV !== 'production'){
+if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
@@ -21,7 +21,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 const dbUrl = process.env.DB_URL;
 const session = require('express-session');
-const MongoDBStore = require("connect-mongo"); 
+const MongoDBStore = require("connect-mongo");
 const localDBUrl = 'mongodb://127.0.0.1:27017/planetFB';
 
 mongoose.connect(dbUrl)
@@ -141,8 +141,8 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
     const messages = {
         success: req.flash('success'),
-        error: req.flash('error'), 
-        warming: req.flash('warming'), 
+        error: req.flash('error'),
+        warming: req.flash('warming'),
         currentUser: req.user,
     };
 
@@ -174,15 +174,15 @@ app.use((err, req, res, next) => {
 });
 
 const port = process.env.PORT || 3000;
-if(cluster.isPrimary){
+if (cluster.isPrimary) {
     console.log('master has been started!');
     cluster.schedulingPolicy = cluster.SCHED_RR; // for windows OS
     const NUM_WORKERS = os.cpus().length;
-    for(let i = 0; i < NUM_WORKERS; i++){
-      cluster.fork();
+    for (let i = 0; i < NUM_WORKERS; i++) {
+        cluster.fork();
     }
-  }
-  else{
+}
+else {
     console.log(`work process has been started! Listeing on port ${port}`);
     app.listen(port);
-  }
+}
