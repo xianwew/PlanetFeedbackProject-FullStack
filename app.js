@@ -2,6 +2,8 @@ if(process.env.NODE_ENV !== 'production'){
     require('dotenv').config();
 }
 
+const cluster = require('cluster');
+const os = require('os');
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -172,6 +174,15 @@ app.use((err, req, res, next) => {
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Listening on port ${port}!`);
-});
+if(cluster.isPrimary){
+    console.log('master has been started!');
+    cluster.schedulingPolicy = cluster.SCHED_RR; // for windows OS
+    const NUM_WORKERS = os.cpus().length;
+    for(let i = 0; i < NUM_WORKERS; i++){
+      cluster.fork();
+    }
+  }
+  else{
+    console.log(`work process has been started! Listeing on port ${port}`);
+    app.listen(port);
+  }
